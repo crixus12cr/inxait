@@ -14,6 +14,13 @@ class RegistroRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'habeas_data' => $this->has('habeas_data') ? 1 : 0,
+        ]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *

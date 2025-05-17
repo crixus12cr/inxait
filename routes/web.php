@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegistroController;
+use App\Http\Controllers\AdministracionController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-});
+
+Route::get('/', [AdministracionController::class, 'index'])->name('home');
+Route::post('/registro', [RegistroController::class, 'store'])->name('registro.store');
+Route::get('/ciudades/{province_id}', [AdministracionController::class, 'getCiudadesPorDepartamento'])->name('ciudades.por_provincia');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

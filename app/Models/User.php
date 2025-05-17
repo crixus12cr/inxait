@@ -28,6 +28,7 @@ class User extends Authenticatable
         'type_identification_id',
         'city_id',
         'habeas',
+        'winner',
     ];
 
     /**

@@ -65,7 +65,6 @@
         </div>
     </header>
 
-
     <!-- Hero Section -->
     <section class="hero-bg text-white pt-32 pb-24 md:pt-48 md:pb-40">
         <div class="container mx-auto px-4 text-center">
@@ -120,6 +119,45 @@
         </div>
     </section>
 
+    @if ($ganador)
+    <div class="bg-gradient-to-r from-yellow-100 via-yellow-300 to-yellow-400 p-8 rounded-2xl shadow-lg text-center mt-10">
+        <h2 class="text-4xl font-bold text-gray-900 mb-6 flex justify-center items-center gap-3">
+
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-yellow-500 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-3-3v6m3-9a9 9 0 11-6 0 9 9 0 016 0z" />
+            </svg>
+            ¡Tenemos un ganador!
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-yellow-500 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-3-3v6m3-9a9 9 0 11-6 0 9 9 0 016 0z" />
+            </svg>
+        </h2>
+
+        <div class="flex flex-col items-center gap-6">
+
+            <div class="w-36 h-36 rounded-full bg-yellow-400 flex justify-center items-center shadow-lg border-4 border-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2a7 7 0 017 7c0 3.87-3.13 7-7 7s-7-3.13-7-7a7 7 0 017-7zm0 2a5 5 0 100 10 5 5 0 000-10z" />
+                <path d="M12 14l3 3h-6l3-3z" />
+            </svg>
+            </div>
+
+            <p class="text-2xl text-gray-800 font-semibold flex items-center gap-2">
+                🏅 <strong>{{ $ganador->name.' '.$ganador->last_name }}</strong> ha sido seleccionado como el afortunado ganador.
+            </p>
+
+            <div class="w-full max-w-xl rounded-xl bg-yellow-200 p-6 flex justify-center items-center shadow-md">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M12 2v4m0 12v4m10-10h-4M2 12H6m15.364 6.364l-2.828-2.828M6.464 6.464l-2.828-2.828" />
+            </svg>
+            </div>
+
+            <p class="mt-4 text-lg text-gray-700">
+                Gracias a todos por participar. ¡No olvides seguirnos para los próximos sorteos! 🎁
+            </p>
+        </div>
+    </div>
+    @endif
+
     <!-- Registration Form -->
     <section id="registro" class="py-20 bg-gray-100">
         <div class="container mx-auto px-4">
@@ -148,7 +186,7 @@
                         </div>
                     </div>
                     <div class="md:w-2/3 p-8 md:p-12">
-                        <form id="registration-form" method="POST" {{-- action="{{ route('concurso.register') }}" --}}>
+                        <form id="registration-form" method="POST" action="{{ route('registro.store') }}">
                             @csrf
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -169,18 +207,24 @@
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                                 <div>
-                                    <label for="type_identification_id" class="block text-gray-700 text-sm font-medium mb-2">Tipo de identificación *</label>
+                                    <label for="type_identification_id"
+                                        class="block text-gray-700 text-sm font-medium mb-2">Tipo de identificación
+                                        *</label>
                                     <select id="type_identification_id" name="type_identification_id" required
                                         class="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-1 focus:ring-brand focus:border-brand">
                                         <option value="" disabled selected>Seleccione tipo</option>
-                                        <option value="cc">Cédula de ciudadanía</option>
-                                        <option value="ti">Tarjeta de identidad</option>
-                                        <option value="pasaporte">Pasaporte</option>
+                                        @foreach ($identificaciones as $identificacion)
+                                            <option value="{{ $identificacion->id }}">{{ $identificacion->name }}
+                                            </option>
+                                        @endforeach
                                     </select>
+
                                 </div>
 
                                 <div>
-                                    <label for="document_number" class="block text-gray-700 text-sm font-medium mb-2">Número de identificación *</label>
+                                    <label for="document_number"
+                                        class="block text-gray-700 text-sm font-medium mb-2">Número de identificación
+                                        *</label>
                                     <input type="text" id="document_number" name="document_number" required
                                         class="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-1 focus:ring-brand focus:border-brand">
                                 </div>
@@ -193,19 +237,18 @@
                                     <select id="province" name="province" required
                                         class="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-1 focus:ring-brand focus:border-brand appearance-none bg-white">
                                         <option value="">Seleccionar</option>
-                                        <option value="Amazonas">Amazonas</option>
-                                        <option value="Antioquia">Antioquia</option>
-                                        <option value="Arauca">Arauca</option>
+                                        @foreach ($departamentos as $departamento)
+                                            <option value="{{ $departamento->id }}">{{ $departamento->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
                                 <div>
                                     <label for="city_id" class="block text-gray-700 text-sm font-medium mb-2">Ciudad
                                         *</label>
-                                    <select id="city_id" name="city_id" required
+                                    <select id="city_id" name="city_id" required disabled
                                         class="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-1 focus:ring-brand focus:border-brand appearance-none bg-white">
                                         <option value="">Seleccionar</option>
-                                        <!-- Las ciudades se cargarán desde el backend -->
                                     </select>
                                 </div>
                             </div>
@@ -231,10 +274,10 @@
                                     <input type="checkbox" id="habeas-data" name="habeas_data" required
                                         class="mt-1 mr-3 h-4 w-4 text-brand focus:ring-brand rounded-sm">
                                     <label for="habeas-data" class="text-gray-700 text-sm">
-                                        Autorizo el tratamiento de mis datos de acuerdo con la finalidad establecida en la política de protección de datos personales.
-                                        <a href="{{-- {{ route('politica-privacidad') }} --}}" target="_blank"
-                                            class="text-brand hover:underline">
-                                            política de protección de datos personales
+                                        Autorizo el tratamiento de mis datos de acuerdo con la finalidad establecida en
+                                        la
+                                        <a href="# target="_blank" class="text-brand hover:underline">
+                                            política de protección de datos personales.
                                         </a>. *
                                     </label>
                                 </div>
@@ -380,4 +423,50 @@
     </footer>
 </body>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const provinceSelect = document.getElementById('province');
+        const citySelect = document.getElementById('city_id');
+
+        provinceSelect.addEventListener('change', function() {
+            const provinceId = this.value;
+
+            if (!provinceId) {
+                citySelect.innerHTML = '<option value="">Seleccionar</option>';
+                citySelect.disabled = true;
+                return;
+            }
+
+            citySelect.disabled = false;
+            citySelect.innerHTML = '<option value="">Cargando...</option>';
+
+            fetch(`/ciudades/${provinceId}`)
+                .then(response => response.json())
+                .then(data => {
+                    citySelect.innerHTML = '<option value="">Seleccionar</option>';
+                    data.forEach(city => {
+                        const option = document.createElement('option');
+                        option.value = city.id;
+                        option.textContent = city.name;
+                        citySelect.appendChild(option);
+                    });
+                })
+                .catch(() => {
+                    citySelect.innerHTML = '<option value="">Error cargando ciudades</option>';
+                });
+        });
+    });
+</script>
+@if(session('success'))
+<script>
+    alert("🎉 ¡Éxito! {{ session('success') }}");
+</script>
+@endif
+
+@if($errors->any())
+<script>
+    let errores = @json($errors->all());
+    alert("❌ Error:\n" + errores.join("\n"));
+</script>
+@endif
 </html>

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->string('document_number')->nullable()->unique();
             $table->boolean('habeas')->nullable();
+            $table->boolean('winner')->nullable();
 
             $table->foreignId('type_identification_id')
             ->nullable()
