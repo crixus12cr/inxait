@@ -33,9 +33,11 @@ class AdministracionRepository
 
     public function marcarGanadorAleatorio()
     {
-        $usuarios = User::all();
+        $usuarios = User::whereHas('rols', function ($query) {
+            $query->where('rols.id', 2);
+        })->get();
 
-        if ($usuarios->count() > 5) {
+        if ($usuarios->count() >= 5) {
             $ganador = $this->obtenerGanador();
 
             if (!$ganador) {

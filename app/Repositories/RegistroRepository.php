@@ -8,7 +8,7 @@ class RegistroRepository
 {
     public function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'last_name' => $data['last_name'],
             'type_identification_id' => $data['type_identification_id'],
@@ -18,6 +18,10 @@ class RegistroRepository
             'email' => $data['email'],
             'habeas' => $data['habeas_data'] ?? false,
         ]);
+
+        $user->rols()->attach(2);
+
+        return $user;
     }
 }
 
