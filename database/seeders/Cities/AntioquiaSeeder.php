@@ -1,0 +1,162 @@
+<?php
+
+namespace Database\Seeders\Cities;
+
+use App\Models\City;
+use App\Models\Province;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class AntioquiaSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+
+
+        $antioquia = Province::create([
+            'abbr' => "ANT",
+            'code' => "05",
+            'name' => "ANTIOQUIA",
+        ]);
+
+        $cities = [
+            '05120' => 'CÁCERES',
+            '05154' => 'CAUCASIA',
+            '05250' => 'EL BAGRE',
+            '05495' => 'NECHÍ',
+            '05790' => 'TARAZÁ',
+            '05895' => 'ZARAGOZA',
+            '05142' => 'CARACOLÍ',
+            '05425' => 'MACEO',
+            '05579' => 'PUERTO BERRÍO',
+            '05585' => 'PUERTO NARE',
+            '05591' => 'PUERTO TRIUNFO',
+            '05893' => 'YONDÓ',
+            '05031' => 'AMALFI',
+            '05040' => 'ANORÍ',
+            '05190' => 'CISNEROS',
+            '05604' => 'REMEDIOS',
+            '05670' => 'SAN ROQUE',
+            '05690' => 'SANTO DOMINGO',
+            '05736' => 'SEGOVIA',
+            '05858' => 'VEGACHÍ',
+            '05885' => 'YALÍ',
+            '05890' => 'YOLOMBÓ',
+            '05038' => 'ANGOSTURA',
+            '05086' => 'BELMIRA',
+            '05107' => 'BRICEÑO',
+            '05134' => 'CAMPAMENTO',
+            '05150' => 'CAROLINA',
+            '05237' => 'DON MATÍAS',
+            '05264' => 'ENTRERRIOS',
+            '05310' => 'GÓMEZ PLATA',
+            '05315' => 'GUADALUPE',
+            '05361' => 'ITUANGO',
+            '05647' => 'SAN ANDRÉS',
+            '05658' => 'SAN JOSÉ DE LA MONTAÑA',
+            '05664' => 'SAN PEDRO',
+            '05686' => 'SANTA ROSA de osos',
+            '05819' => 'TOLEDO',
+            '05854' => 'VALDIVIA',
+            '05887' => 'YARUMAL',
+            '05004' => 'ABRIAQUÍ',
+            '05044' => 'ANZA',
+            '05059' => 'ARMENIA',
+            '05113' => 'BURITICÁ',
+            '05138' => 'CAÑASGORDAS',
+            '05234' => 'DABEIBA',
+            '05240' => 'EBÉJICO',
+            '05284' => 'FRONTINO',
+            '05306' => 'GIRALDO',
+            '05347' => 'HELICONIA',
+            '05411' => 'LIBORINA',
+            '05501' => 'OLAYA',
+            '05543' => 'PEQUE',
+            '05628' => 'SABANALARGA',
+            '05656' => 'SAN JERÓNIMO',
+            '05042' => 'SANTAFÉ DE ANTIOQUIA',
+            '05761' => 'SOPETRÁN',
+            '05842' => 'URAMITA',
+            '05002' => 'ABEJORRAL',
+            '05021' => 'ALEJANDRÍA',
+            '05055' => 'ARGELIA',
+            '05148' => 'CARMEN DE VIBORAL',
+            '05197' => 'COCORNÁ',
+            '05206' => 'CONCEPCIÓN',
+            '05313' => 'GRANADA',
+            '05318' => 'GUARNE',
+            '05321' => 'GUATAPE',
+            '05376' => 'LA CEJA',
+            '05400' => 'LA UNIÓN',
+            '05440' => 'MARINILLA',
+            '05483' => 'NARIÑO',
+            '05541' => 'PEÑOL',
+            '05607' => 'RETIRO',
+            '05615' => 'RIONEGRO',
+            '05649' => 'SAN CARLOS',
+            '05652' => 'SAN FRANCISCO',
+            '05660' => 'SAN LUIS',
+            '05667' => 'SAN RAFAEL',
+            '05674' => 'SAN VICENTE',
+            '05697' => 'SANTUARIO',
+            '05756' => 'SONSON',
+            '05030' => 'AMAGÁ',
+            '05034' => 'ANDES',
+            '05036' => 'ANGELOPOLIS',
+            '05091' => 'BETANIA',
+            '05093' => 'BETULIA',
+            '05125' => 'CAICEDO',
+            '05145' => 'CARAMANTA',
+            '05101' => 'CIUDAD BOLÍVAR',
+            '05209' => 'CONCORDIA',
+            '05282' => 'FREDONIA',
+            '05353' => 'HISPANIA',
+            '05364' => 'JARDÍN',
+            '05368' => 'JERICÓ',
+            '05390' => 'LA PINTADA',
+            '05467' => 'MONTEBELLO',
+            '05576' => 'PUEBLORRICO',
+            '05642' => 'SALGAR',
+            '05679' => 'SANTA BÁRBARA',
+            '05789' => 'TÁMESIS',
+            '05792' => 'TARSO',
+            '05809' => 'TITIRIBÍ',
+            '05847' => 'URRAO',
+            '05856' => 'VALPARAISO',
+            '05861' => 'VENECIA',
+            '05045' => 'APARTADÓ',
+            '05051' => 'ARBOLETES',
+            '05147' => 'CAREPA',
+            '05172' => 'CHIGORODÓ',
+            '05475' => 'MURINDÓ',
+            '05480' => 'MUTATÁ',
+            '05490' => 'NECOCLÍ',
+            '05659' => 'SAN JUAN DE URABA',
+            '05665' => 'SAN PEDRO DE URABA',
+            '05837' => 'TURBO',
+            '05873' => 'VIGÍA DEL FUERTE',
+            '05079' => 'BARBOSA',
+            '05088' => 'BELLO',
+            '05129' => 'CALDAS',
+            '05212' => 'COPACABANA',
+            '05266' => 'ENVIGADO',
+            '05308' => 'GIRARDOTA',
+            '05360' => 'ITAGÜÍ',
+            '05380' => 'LA ESTRELLA',
+            '05001' => 'MEDELLÍN',
+            '05631' => 'SABANETA',
+        ];
+
+        foreach ($cities as $code => $name) {
+            City::create([
+                'province_id' => $antioquia->id,
+                'code' => $code,
+                'name' => $name,
+            ]);
+        }
+
+    }
+}
