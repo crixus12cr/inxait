@@ -27,7 +27,7 @@ class User extends Authenticatable
         'document_number',
         'type_identification_id',
         'city_id',
-        'habea_id',
+        'habeas',
     ];
 
     /**

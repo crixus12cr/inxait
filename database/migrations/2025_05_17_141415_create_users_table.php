@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->string('document_number')->nullable()->unique();
+            $table->boolean('habeas')->nullable();
 
             $table->foreignId('type_identification_id')
             ->nullable()
@@ -30,12 +31,6 @@ return new class extends Migration
             $table->foreignId('city_id')
             ->nullable()
             ->constrained('cities')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
-
-            $table->foreignId('habea_id')
-            ->nullable()
-            ->constrained('habeas')
             ->onUpdate('cascade')
             ->onDelete('cascade');
 
