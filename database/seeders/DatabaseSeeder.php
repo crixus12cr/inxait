@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
         ]);
         $this->call([
             TypeIdentificationSeeder::class,
-            categorySeeder::class
         ]);
 
         // Cargar automáticamente todos los seeders de la carpeta 'cities'
