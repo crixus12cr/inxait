@@ -24,9 +24,8 @@ class DashboardController extends Controller
 
     public function export()
     {
-        $data = $this->service->exportFilteredUsers();
         $nombre = 'usuarios_'.now()->format('Y-m-d_H-i-s').'.xlsx';
-        return Excel::download(new UsersExport($data), $nombre);
+        return Excel::download(new UsersExport, $nombre);
     }
 }
 

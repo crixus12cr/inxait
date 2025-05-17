@@ -13,12 +13,4 @@ class UserRepository
             })
             ->paginate(10);
     }
-
-    public function getUsersForExport()
-    {
-        return User::whereHas('rols', function ($query) {
-                $query->where('rols.id', 2);
-            })
-            ->get();
-    }
 }

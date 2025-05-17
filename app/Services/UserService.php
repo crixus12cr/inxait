@@ -17,9 +17,4 @@ class UserService
     {
         return $this->repo->getUsers($filters);
     }
-
-    public function exportFilteredUsers(array $filters = [])
-    {
-        return $this->repo->getUsersForExport($filters);
-    }
 }
