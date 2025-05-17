@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class DatabaseSeeder extends Seeder
@@ -17,6 +16,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             TypeIdentificationSeeder::class,
+            RolSeeder::class,
+            HabeaSeeder::class,
+            UserSeeder::class
         ]);
 
         // Cargar automáticamente todos los seeders de la carpeta 'cities'

@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('last_name');
+            $table->string('last_name')->nullable();
             $table->string('phone', 10)->nullable();
             $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
-            $table->string('document_number')->unique();
+            $table->string('document_number')->nullable()->unique();
 
             $table->foreignId('type_identification_id')
             ->nullable()
@@ -40,6 +40,7 @@ return new class extends Migration
             ->onDelete('cascade');
 
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
 
