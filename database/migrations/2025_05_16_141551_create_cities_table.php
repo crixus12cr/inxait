@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('code');
 
             $table->foreignId('province_id')
-            ->nullable()
             ->constrained('provinces')
             ->onUpdate('cascade')
             ->onDelete('cascade');
