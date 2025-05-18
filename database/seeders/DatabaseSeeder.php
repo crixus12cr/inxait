@@ -27,14 +27,17 @@ class DatabaseSeeder extends Seeder
     private function seedCities(): void
     {
         // Obtiene todos los archivos .php en la carpeta cities
-        $seeders = File::files(database_path('seeders/cities'));
+        if (File::exists(database_path('seeders/cities'))) {
+            $seeders = File::files(database_path('seeders/cities'));
 
-        foreach ($seeders as $seeder) {
-            // Forma nombres de la clase del seeder
-            $seederClass = 'Database\\Seeders\\Cities\\' . pathinfo($seeder->getFilename(), PATHINFO_FILENAME);
-            if (class_exists($seederClass)) {
-                $this->call($seederClass);
+            foreach ($seeders as $seeder) {
+                $seederClass = 'Database\\Seeders\\Cities\\' . pathinfo($seeder->getFilename(), PATHINFO_FILENAME);
+                if (class_exists($seederClass)) {
+                    $this->call($seederClass);
+                }
             }
+        } else {
+            $this->command->error('No se encontraron archivos de seeders en la carpeta cities.');
         }
     }
 }
