@@ -30,6 +30,7 @@ class UsersExport implements FromCollection, WithHeadings, WithStyles, WithEvent
                         'Ciudad' => $user->city->name ?? '',
                         'Roles' => $user->rols->pluck('name')->implode(', '),
                         'Ganador' => $user->winner ? 'Sí' : 'No',
+                        'Fecha de Registro' => $user->created_at ? $user->created_at->format('Y-m-d H:i') : '',
                     ];
                 });
     }
@@ -46,6 +47,7 @@ class UsersExport implements FromCollection, WithHeadings, WithStyles, WithEvent
             'Ciudad',
             'Roles',
             'Ganador',
+            'Fecha de Registro',
         ];
     }
 
