@@ -27,8 +27,8 @@ class DatabaseSeeder extends Seeder
     private function seedCities(): void
     {
         // Obtiene todos los archivos .php en la carpeta cities
-        if (File::exists(database_path('seeders/cities'))) {
-            $seeders = File::files(database_path('seeders/cities'));
+        if (File::exists(database_path('seeders/Cities'))) {
+            $seeders = File::files(database_path('seeders/Cities'));
 
             foreach ($seeders as $seeder) {
                 $seederClass = 'Database\\Seeders\\Cities\\' . pathinfo($seeder->getFilename(), PATHINFO_FILENAME);
