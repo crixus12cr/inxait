@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         $seeders = File::files(database_path('seeders/cities'));
 
         foreach ($seeders as $seeder) {
-            // Forma el nombre de la clase del seeder
+            // Forma nombres de la clase del seeder
             $seederClass = 'Database\\Seeders\\Cities\\' . pathinfo($seeder->getFilename(), PATHINFO_FILENAME);
             if (class_exists($seederClass)) {
                 $this->call($seederClass);
