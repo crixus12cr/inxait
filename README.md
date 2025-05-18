@@ -69,3 +69,8 @@ Panel de administración (login): http://127.0.0.1:8000/login
 Correo: admin@admin.com
 <br>
 Contraseña: administrador
+
+## Diagrama Entidad Relacion BD
+<p align="center">
+  <img src="readme-images/Base-datos-Cristian-Perdomo.png" alt="Imagen Base De Datos" width="400"/>
+</p>
